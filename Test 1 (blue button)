@@ -1,0 +1,36 @@
+# Import the necessary .NET assembly for creating GUI elements
+Add-Type -AssemblyName System.Windows.Forms
+#skibiti toilet
+<#
+.SYNOPSIS
+Creates a GUI window with a button.
+
+.DESCRIPTION
+This function creates a simple GUI window with a button that says "test".
+
+.EXAMPLE
+Create-TestWindow
+This command will open a blue window with a button that says "test".
+#>
+function Create-TestWindow {
+    # Create a new form (window)
+    $form = New-Object System.Windows.Forms.Form
+    $form.Text = "Test Window"  # Set the title of the window
+    $form.BackColor = "Blue"    # Set the background color of the window to blue
+    $form.Size = New-Object System.Drawing.Size(200, 100)  # Set the size of the window
+
+    # Create a button
+    $button = New-Object System.Windows.Forms.Button
+    $button.Text = "test"  # Set the text on the button
+    $button.Location = New-Object System.Drawing.Point(50, 30)  # Set the position of the button
+    $button.Add_Click({ Write-Host "Button clicked!" })  # Add a click event handler to the button
+
+    # Add the button to the form
+    $form.Controls.Add($button)
+
+    # Show the form as a dialog
+    $form.ShowDialog() | Out-Null
+}
+
+# Call the function to create the window with the button
+Create-TestWindow
